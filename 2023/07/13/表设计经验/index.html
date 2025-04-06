@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -537,7 +537,7 @@
 </ul>
 <p>对于MYSQL来说，存储过程、触发器等还不是很成熟， 并没有完善的出错记录处理，不建议使用。</p>
 <h3 id="18-1-N-关系的设计"><a href="#18-1-N-关系的设计" class="headerlink" title="18. 1:N 关系的设计"></a>18. 1:N 关系的设计</h3><p>日常开发中，1对多的关系应该是非常常见的。比如一个班级有多个学生，一个部门有多个员工等等。这种的建表原则就是： 在从表（N的这一方）创建一个字段，以字段作为外键指向主表（1的这一方）的主键。示意图如下:</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/webp/33675133/1721360791737-ab858810-29a8-4dbf-beb0-d384bc59f50c.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/webp/33675133/1721360791737-ab858810-29a8-4dbf-beb0-d384bc59f50c.webp"></p>
 <p>学生表是多（N）的一方，会有个字段class_id保存班级表的主键。当然，一般不加外键约束哈，只是单纯保存这个关系而已。</p>
 <p>有时候两张表存在N:N关系时，我们应该消除这种关系。通过增加第三张表，把N:N修改为两个 1:N。比如图书和读者，是一个典型的多对多的关系。一本书可以被多个读者借，一个读者又可以借多本书。我们就可以设计一个借书表，包含图书表的主键，以及读者的主键，以及借还标记等字段。</p>
 <h3 id="19-大字段"><a href="#19-大字段" class="headerlink" title="19. 大字段"></a>19. 大字段</h3><p>设计表的时候，我们尤其需要关注一些大字段，即占用较多存储空间的字段。比如用来记录用户评论的字段，又或者记录博客内容的字段，又或者保存合同数据的字段。如果直接把表字段设计成text类型的话，就会浪费存储空间，查询效率也不好。</p>
@@ -547,11 +547,11 @@
 <ul>
 <li>分库：就是一个数据库分成多个数据库，部署到不同机器。</li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/webp/33675133/1721360972287-74c2bf75-f3a1-4871-96c5-5fda760d0431.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/webp/33675133/1721360972287-74c2bf75-f3a1-4871-96c5-5fda760d0431.webp"></p>
 <ul>
 <li>分表：就是一个数据库表分成多个表。</li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/webp/33675133/1721360972292-03df1265-1107-4e96-92f0-c0a3a9f93b16.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/webp/33675133/1721360972292-03df1265-1107-4e96-92f0-c0a3a9f93b16.webp"></p>
 <p>我们在设计表的时候，其实可以提前估算一下，是否需要做分库分表。比如一些用户信息，未来可能数据量到达百万设置千万的话，就可以提前考虑分库分表。</p>
 <p>为什么需要分库分表: 数据量太大的话，SQL的查询就会变慢。如果一个查询SQL没命中索引，千百万数据量级别的表可能会拖垮整个数据库。即使SQL命中了索引，如果表的数据量超过一千万的话，查询也是会明显变慢的。这是因为索引一般是B+树结构，数据千万级别的话，B+树的高度会增高，查询就变慢啦。</p>
 <p>分库分表主要有水平拆分、垂直拆分的说法，拆分策略有<code>range</code>范围、<code>hash</code>取模。而分库分表主要有这些问题：</p>
@@ -666,7 +666,7 @@
             
   
   
-    <article id="comments" lazyload>
+    <article id="comments">
       
   <div id="gitalk-container"></div>
   <script type="text/javascript">
@@ -830,10 +830,6 @@
 
 
 
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
 
 
 
